@@ -2,7 +2,7 @@
 
 $MenuAdmin =  [
     [
-        "name" => 'Trang chính',
+        "name" => 'Thống Kê',
         "route" => 'trang-chinh',
     ],
     [
