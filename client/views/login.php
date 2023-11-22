@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style copy.css">
-    <title> Login </title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <title>Document</title>
 </head>
-
 <body>
-
-    <div class="container" id="container">
+<div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+
+            <form action="index.php?url=dang-ky-save" method="POST" enctype="multipart/form-data" >
                 <h1>Tạo Tài Khoản</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -22,15 +20,17 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>hoặc sử dụng email của bạn để đăng kí</span>
-                <input type="text" name="" placeholder="Name">
-                <input type="file" name="" type="">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="text" name="kh_name" placeholder="Name">
+                <input type="file" name="kh_avata" type="text">
+                <input type="email" name="kh_email" placeholder="Email">
+                <input type="password" name="kh_password" placeholder="Password">
+                <input type="sdt" name="kh_phone" placeholder="Số Điện Thoại">
                 <button>ĐĂNG KÍ</button>
             </form>
         </div>
+
         <div class="form-container sign-in">
-            <form>
+            <form action="index.php?url=dang-nhap-save" method="POST" enctype="multipart/form-data">
                 <h1>ĐĂNG NHẬP</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -39,12 +39,13 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>hoặc sử dụng mật khẩu email của bạn</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
                 <a href="#">Quên Mật Khẩu?</a>
                 <button>ĐĂNG NHẬP</button>
             </form>
         </div>
+
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
@@ -60,8 +61,6 @@
             </div>
         </div>
     </div>
-
-    <script src="assets/js/script.js"></script>
 </body>
-
+<script src="../assets/js/script.js"></script>
 </html>

@@ -1,6 +1,17 @@
+<link rel="stylesheet" href="./../assets/Css/product-detail.css">
+<style>
+    .sizeActive {
+        background-color: #000;
+        color: #ffff;
+    }
 
-<!-- Breadcrumb Start -->
-<div class="container-fluid">
+    .colorActive {
+        border: 4px solid #319DA0;
+    }
+    </style>
+
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
@@ -19,42 +30,19 @@
         <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-4.jpg" alt="Image">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
+                <img id="expandedImg" src="./../upload/<?=$product[0]["sp_image"]?>" style="width:100%">
                 </div>
             </div>
 
             <div class="col-lg-7 h-auto mb-30">
+            <form action="index.php?url=add-gio-hang" method="POST">
+                        <input type="text" name="id" hidden value="<?=$product[0]["sp_id"]?>">
                 <div class="h-100 bg-light p-30">
-                    <h3>Product Name Goes Here</h3>
+                        <h3 class="product-name"><?=$product[0]["sp_name"]?></h3>
                     <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star-half-alt"></small>
-                            <small class="far fa-star"></small>
-                        </div>
+                        <p class="alert-product-number">Còn <?=$product[0]['sp_quantity']?> sản phẩm</p>
+                        <p style="color : #8E0007;font-weight:bold"><?=$error?></p>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">
                     <div class="product-item_price-wraper">
                     <div class="product-price-main">
                         <?=number_format($product[0]['sp_price'],0,",",".")?>đ
@@ -63,66 +51,49 @@
                         <?=number_format(trim($product[0]['sp_sale']),0,",",".")?>đ
                     </div>
                 </div>
-                    </h3>
-
-                </div>
                     <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                         clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                         Nonumy</p>
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
                         <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                            <?php foreach ($size as $key) { ?>
-                                <label onClick="chooseSize()" for="<?=$key['kt_id']?>" class="size_lable" 
-                                style="background-color: <?=$key['kt_name']?>"></label>
-                                <input id="<?=$key["kt_id"]?>" value="<?=$key["kt_name"]?>" hidden name="size" type="radio">
-                            <?php } ?>
+                            <?php
+                                foreach ($size as $key) { ?>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="<?= $key['kt_id'] ?>" hidden name="size" value="<?=$key['kt_name']?>">
+                                <label class="custom-control-label" for="<?= $key['kt_id'] ?>"><?= $key['kt_name'] ?></label>
                             </div>
+                               <?php } ?>
+                            
                         </form>
                     </div>
-                    <div class="d-flex mb-4">
-                        <strong class="text-dark mr-3">Colors:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                               <?php foreach ($color as $key) { ?>
-                                 <label onClick="chooseColor()" for="color-<?=$key['ma_color']?>" class="color_lable"
-                                style="background-color: <?=$key['ma_color']?>"></label>
-                                <input id="color-<?=$key['ma_color']?>" hidden name="color" value="<?=$key['kt_name']?>">
-                             <?php  } ?>
-                            </div>
-                        </form>
-                    </div>
+                    <div class="product-atribute_box">
+                    <p>Màu sắc : </p>
+                    <ul class="product-atribute_list-color">
+                        <?php  
+                    foreach ($color as $key) {
+                     ?>
+                        <label onClick="chooseColor()" for="color-<?=$key["ma_color"]?>" class="color_label"
+                            style="background-color: <?=$key["ma_color"]?>"></label>
+                        <input id="color-<?=$key["ma_color"]?>" hidden name="color" value="<?=$key["kt_name"]?>" type="radio">
+                        <?php  }  ?>             
+                    </ul>
+                </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
-                        <div class="number-input">
+                    <div class="number-input">
                         <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                             class="minus"><i class="fa-solid fa-minus"></i></a>
                         <input class="quantity" min="0" name="quantity" value="1" type="number">
                         <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                             class="plus"><i class="fa-solid fa-plus"></i></a>
-                        </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
                     </div>
-                    <div class="d-flex pt-2">
-                        <strong class="text-dark mr-2">Share on:</strong>
-                        <div class="d-inline-flex">
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
                         </div>
+                        <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button>
                     </div>
+
                 </div>
             </div>
+        </form>
         </div>
         <div class="row px-xl-5">
             <div class="col">
@@ -240,135 +211,66 @@
     <div class="container-fluid py-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
         <div class="row px-xl-5">
-            <div class="col">
+            <?php foreach ($productRelate as $item) { ?>
+                <div class="col">
                 <div class="owl-carousel related-carousel">
                     <div class="product-item bg-light">
                         <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                            <img class="img-fluid w-100" src=".././upload/" alt="<?=$item['sp_image']?>">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                            <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id<?=$item['sp_id']?>">
+                            <p><?=$item['sp_name']?></p></a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item bg-light">
-                        <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
+                            <h5 class="color_price">
+                                    <?=number_format($item['sp_price'],0,",",".")?>đ
+                                </h5>
+                                <h6 class="text-muted ml-2">
+                                    <del><?=number_format($item['sp_sale'],0,",",".")?>đ </del>
+                                </h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+          <?php  } ?>
+            
         </div>
     </div>
     <!-- Products End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+        function chooseColor() {
+        const colors = document.querySelectorAll('.color_label');
+        colors.forEach(element => {
+        element.classList.remove("colorActive");
+        element.addEventListener('click', () => {
+        element.classList.add("colorActive");
+        })
+    });
+}
+    </script>
+    <script src="./../assets/js/tab-slider.js"></script>
+    <script src="./../assets/js/tab-component.js"></script>
+    <script src="./../assets/js/list-cart.js"></script>
+    <script src="./../assets/js/click-dropdown.js"></script>
+    <script src="./../assets/js/back-top.js"></script>

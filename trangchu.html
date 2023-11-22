@@ -25,7 +25,113 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
+<style>
+    .header-footer {
+    border-bottom: 1px solid #ccc;
+    padding: 30px 0px;
+}
 
+.footer {
+    background-color: var(--color-container);
+}
+
+.header-footer-form-box {
+    margin: 20px 0px;
+
+}
+
+.header-footer-form-input {
+    width: 350px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+}
+
+
+.product-search-item {
+    display: flex;
+}
+
+.header-footer-form-btn {
+    height: 40px;
+    padding: 0px 20px;
+    font-size: 1rem;
+    background-color: var(--color-primary);
+    color: #ffff;
+    border: none;
+}
+
+.footer-intro-box {
+    display: flex;
+    justify-content: space-between;
+    height: 160px;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.footer-intro-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-intro-item img {
+    margin-right: 15px;
+}
+
+.footer-intro-item p {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.footer-intro-item span {
+    font-weight: 400px;
+    color: var(--color-text);
+}
+
+/* -------- */
+
+.header-footer_main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* padding: 30px; */
+    grid-gap: 40px;
+    padding: 20px 80px;
+    border-bottom: 1px solid #ccc;
+}
+
+.title-header {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.header-footer_description img {
+    height: 70px;
+}
+
+.header-contact_list {
+    list-style-type: none;
+}
+
+.header-contact_list li {
+    margin-bottom: 10px;
+}
+
+
+.header-contact_list i {
+    color: var(--color-primary);
+}
+
+.footer-end {
+    height: 50px;
+}
+
+.footer-end p {
+    line-height: 50px;
+}
+</style>
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
@@ -314,77 +420,62 @@
             </div>
         </div>
     </div>
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-        <div class="row px-xl-5 pt-5">
-            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+0987 333 6666</p>
-            </div>
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
-                                </div>
-                            </div>
-                        </form>
-                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
-                        <div class="d-flex">
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
+    <style>
+        footer {
+            border-top: 1px solid #ccc;
+            padding-top: 20px
+        }
+        </style>
+        <footer class="footer">
+            <header class="header-footer">
+                <h3 class="commom-title text-center">
+                    HÃY LIÊN HỆ VỚI CHÚNG TÔI!
+                </h3>
+                <p class="text-center color-text">Luôn sẵn sáng hỗ trợ và tư vấn cho bạn để có sản phẩm tốt nhất.</p>
+                <div class="header-footer-form-box text-center">
+                    <input placeholder="Tìm kiếm sản phẩm" class="header-footer-form-input" type="text">
+                    <button class="header-footer-form-btn">Gửi</button>
+                </div>
+            </header>
+            <div class="header-footer_main padding-container">
+                <div class="header-footer_description">
+                    <h4 class="title-header color-primary">Giới thiệu</h4>
+                    <p class="color-text" style="text-align:justify ;">Trang mua sắm trực tuyến nội thất mang phong cách
+                        việt, giúp bạn cập nhập và nắm bắt xu hướng mới</p>
+                    <img src="https://theme.hstatic.net/1000409762/1000752712/14/logo_bct.png?v=10" alt="">
+                </div>
+                <div class="header-footer_contact">
+                    <h4 class="title-header color-primary">Liên kết</h4>
+                    <ul class="header-contact_list">
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> Tìm kiếm</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> Giới thiệu</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> Chính sách đổi trả</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> Điều khoản dịch vụ</li>
+                    </ul>
+                </div>
+                <div class="header-description color-primary">
+                    <h4 class="title-header">Thông tin liên hệ</h4>
+                    <ul class="header-contact_list">
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> Tầng 4, tòa nhà Flemington, số
+                            182, đường Lê Đại Hành, phường 15, quận 11, Tp. Hồ Chí Minh.</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> 1900.636.099</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> 1900.636.099</li>
+                        <li class="li color-text"><i class="fa-solid fa-caret-right"></i> hi@haravan.com</li>
+                    </ul>
+                </div>
+                <div class="header-description color-primary">
+                    <h4 class="title-header">Fanpage</h4>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8638558814037!2d105.74459841440749!3d21.038132792835356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b991d80fd5%3A0x53cefc99d6b0bf6f!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEZQVCBQb2x5dGVjaG5pYw!5e0!3m2!1svi!2s!4v1665453619931!5m2!1svi!2s" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-        </div>
-        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
-                    by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
-                </p>
+            <div class="footer-end">
+                <p class="color-text text-center">Copyright © 2022 Urban Home. Powered by Haravan</p>
             </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
-            </div>
+        </footer>
         </div>
-    </div>
-    <!-- Footer End -->
-
+        <div id="backTop">
+            <i class="fa-solid fa-caret-up"></i>
+        </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

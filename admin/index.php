@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+ob_start();
     include('./../model/connect.php');
     include('./../model/category.php');
     include('./../model/product.php');
@@ -304,9 +305,13 @@
                 updateUser($_POST);
                 header("location:".BASE_ADMIN."account");
                 break;
+            
         }
     }else{
-        include "./views/layouts/home.php";
+        // Trang chính
+        $chart = cateChart();
+        include('./views/main.php');
     }
+
     include "./views/layouts/footer.php";
-?>
+    ob_end_flush();
