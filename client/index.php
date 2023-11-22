@@ -70,6 +70,25 @@ if (isset($_GET['url'])) {
                 }
             }
             break;
+            //bình luận
+            case 'binh-luan':
+                if(isset($_SESSION["user"])){
+                   $_POST["kh_id"] = $_SESSION["user"]["kh_id"];
+                   commentProduct($_POST);
+                   header("location:".BASE_CLIENT."?url=san-pham-chi-tiet&id=". $_POST["sp_id"]."&dg=danh-gia");
+                }else{
+                    header("location:".BASE_CLIENT."?dang-nhap");
+                }
+                break;
+
+
+         case 'binh-luan-delete':
+                if(isset($_GET["id"])){
+                    deleteCmtt($_GET["id"]);
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                }
+                   
+                break;
         //sanr phẩm chi tiết
         case 'san-pham-chi-tiet':
             $error = '';
@@ -186,6 +205,10 @@ if (isset($_GET['url'])) {
                     }
                     // Quay về trang trước
                     header('Location: ' . $_SERVER['HTTP_REFERER']);
+                break;
+                    //liên hệ
+                case 'lien-he':
+                        include('./views/contact.php');
                     break;
         
 

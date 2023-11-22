@@ -179,7 +179,7 @@ ob_start();
             $errorSize = '';
             $product = getProductFind($_POST['sp_id']);
             if(!empty($_POST["sp_price"]) && !empty($_POST["sp_sale"])){
-                if((int)$_POST["sp_price"]    < (int)$_POST["sp_sale"]){
+                if((int)$_POST["sp_price"]    >  (int)$_POST["sp_sale"]){
                     $errorPriceSale = 'Giá giảm phải lớn hơn giá gốc !!!';
                 }
             }

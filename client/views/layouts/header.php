@@ -130,7 +130,7 @@
                                     <a href="thanhtoan.html" class="dropdown-item">Thanh Toán</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Liên Hệ</a>
+                            <a href="index.php?url=lien-he" class="nav-item nav-link">Liên Hệ</a>
                         </div>
                         
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">

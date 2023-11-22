@@ -1,4 +1,9 @@
-
+<style>
+    .img-fluid {
+    max-width: 100%;
+    height: 300px;
+    }
+</style>
 <div class="title-box text-center">
         <h3 style="color:red">Tất cả sản phẩm</h3>
     </div>
@@ -20,7 +25,7 @@
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" checked id="price-all">
                             <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal">1000</span>
+                            <span class="badge border font-weight-normal"></span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" id="price-1">

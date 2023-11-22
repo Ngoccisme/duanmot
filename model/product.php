@@ -19,7 +19,15 @@ function getProductWhereCate($cate ){
     $result = $stmt->fetchAll();
     return $result;
 }
-
+// lọc theo số tiền
+function getProductWherePrice($price){
+    $conn = connect();
+    $stmt = $conn->prepare("SELECT *  FROM product WHERE sp_price BETWEEN 200000 AND 500000");
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $stmt->fetchAll();
+    return $result;
+}
 // Lọc theo kích thước
 function getProductWhereSize($size){
     $conn = connect();

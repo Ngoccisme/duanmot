@@ -1,7 +1,12 @@
 <?php
     include_once("layouts/boxright.php");
 ?>
-
+<style>
+    .img-fluid {
+    max-width: 100%;
+    height: 400px;
+}
+</style>
 <div class="container-fluid pt-5 pb-3">
     
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
@@ -25,10 +30,10 @@
                                 <!-- gia sản phẩm -->
                                 
                                 <h5 class="color_price">
-                                    <?=number_format($item['sp_price'],0,",",".")?>đ
+                                    <?=number_format($item['sp_sale'],0,",",".")?>đ
                                 </h5>
                                 <h6 class="text-muted ml-2">
-                                    <del><?=number_format($item['sp_sale'],0,",",".")?>đ </del>
+                                    <del><?=number_format($item['sp_price'],0,",",".")?>đ </del>
                                 </h6>
                             </div>
                             

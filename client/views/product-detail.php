@@ -8,6 +8,95 @@
     .colorActive {
         border: 4px solid #319DA0;
     }
+    .form-control-cmtt {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+
+            .cmtt__item {
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                margin: 20px;
+
+            }
+
+            .form-control-input-box {
+                padding-bottom: 5px;
+                border-bottom: 1px solid #ccc;
+                display: flex;
+                margin-left: 20px;
+                width: 100%;
+            }
+
+            .form-control-input {
+                outline: none;
+                border: none;
+                width: 100%;
+                font-size: 15px;
+            }
+
+            .form-cmtt {
+                margin: 0px 20px;
+            }
+
+            .avatar-cmtt {
+                width: 40px;
+                height: 40px;
+                border-radius: 50px
+            }
+
+            .cmtt__content {
+                text-align: justify;
+                background-color: #F1F1F1;
+                margin-top: 5px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .all__cmtt::-webkit-scrollbar {
+                width: 3px;
+                background-color: rgb(235, 232, 232);
+            }
+
+            .all__cmtt::-webkit-scrollbar-thumb {
+                background-color: #999;
+                border-radius: 6px;
+            }
+
+            .all__cmtt {
+                height: 400px;
+                overflow-y: auto;
+            }
+
+            .cmtt__info {
+                margin-left: 15px;
+            }
+
+            .btn__submit {
+                cursor: pointer;
+                color: #999;
+                background-color: #ffff;
+                border: none;
+                font-size: 18px;
+            }
+
+            .btn__submit:hover {
+                color: #555;
+            }
+
+            .cmtt__content-box {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+            }
+
+            .cmtt__delete {
+                margin-left: 10px;
+                color: #8E0007;
+            }
+            
     </style>
 
     <!-- Breadcrumb Start -->
@@ -45,15 +134,16 @@
                     </div>
                     <div class="product-item_price-wraper">
                     <div class="product-price-main">
-                        <?=number_format($product[0]['sp_price'],0,",",".")?>đ
+                        <?=number_format($product[0]['sp_sale'],0,",",".")?>đ
                     </div>
                     <div class="product-price_sale color-text">
-                        <?=number_format(trim($product[0]['sp_sale']),0,",",".")?>đ
+                        <?=number_format(trim($product[0]['sp_price']),0,",",".")?>đ
                     </div>
                 </div>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
+                    <!-- <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                         clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                        Nonumy</p> -->
+                        <hr>
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Sizes:</strong>
                         <form>
@@ -99,55 +189,50 @@
             <div class="col">
                 <div class="bg-light p-30">
                     <div class="nav nav-tabs mb-4">
-                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
-                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Mô tả</a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Đánh giá</a>
+                        <!-- <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a> -->
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-                            <h4 class="mb-3">Product Description</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                            <h4 class="mb-3">Mô tả sản phẩm</h4>
+                            <?=$product[0]['sp_description'] ?>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
-                            <h4 class="mb-3">Additional Information</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item px-0">
-                                            Sit erat duo lorem duo ea consetetur, et eirmod takimata.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                        </li>
-                                        <li class="list-group-item px-0">
-                                            Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
-                                        </li>
-                                      </ul> 
-                                </div>
-                            </div>
+                            <h4 class="mb-3">Đánh giá</h4>
+                            <?php if(isset($_SESSION["user"])){ ?>
+                                <form action="?url=binh-luan" method="POST" class="form-cmtt">
+                                    <input type="text" value="<?=$product[0]['sp_id']?>" name="sp_id" hidden>
+                                    <div class="form-control-cmtt">
+                                        <img class="avatar-cmtt" src="./../upload/<?=$_SESSION["user"]["kh_avatar"]?>" alt="">
+                                        <div class="form-control-input-box">
+                                            <input class="form-control-input" name="content" type="text"
+                                                placeholder="Đánh giá của bạn ...">
+                                            <button class="btn__submit" type="submit"> <i class="fa-solid fa-paper-plane"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php } ?>
+                                <div class="all__cmtt">
+                                    <?php foreach ($comments as $key) { ?>
+                                    <div class="cmtt__item">
+                                        <img class="avatar-cmtt" src="./../upload/<?= $key["kh_avatar"]?>" alt="">
+                                        <div class="cmtt__info">
+                                            <h5 class="cmtt__user"><?= $key["kh_name"]?></h5>
+                                            <div class="cmtt__content-box">
+                                                <p class="cmtt__content"><?= $key["content"]?>
+                                                </p>
+                                                <?php if(isset($_SESSION["user"])){
+                                                    if($_SESSION["user"]["kh_id"] ==  $key["kh_id"]){ ?>
+                                                    <a  onclick="return confirm('Bạn có muốn xoá danh mục này ?')"  href="index.php?url=binh-luan-delete&id=<?= $key["cntt_id"]?>"   class="cmtt__delete"><i class="fa-solid fa-xmark"></i></a>
+                                                    <?php   } ?>
+                                                <?php   } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php  } ?>
                         </div>
-                        <div class="tab-pane fade" id="tab-pane-3">
+                        <!-- <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="mb-4">1 review for "Product Name"</h4>
@@ -198,7 +283,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -208,36 +293,44 @@
 
 
     <!-- Products Start -->
+    <style>
+        .img-fluid {
+        max-width: 100%;
+        height: 400px;
+    }
+    </style>
     <div class="container-fluid py-5">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sản phẩm liên quan</span></h2>
         <div class="row px-xl-5">
-            <?php foreach ($productRelate as $item) { ?>
-                <div class="col">
-                <div class="owl-carousel related-carousel">
-                    <div class="product-item bg-light">
+        <?php foreach($productRelate as $item){ ?> 
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src=".././upload/" alt="<?=$item['sp_image']?>">
-                            <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            </div>
+                                <!-- ảnh sản phẩm  -->
+                                <a href="index.php?url=san-pham-chi-tiet&id=<?= $item["sp_id"] ?>"><img class="img-fluid w-100" src=".././upload/<?=$item["sp_image"] ?>" alt=""></a>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id<?=$item['sp_id']?>">
-                            <p><?=$item['sp_name']?></p></a>
+                            <!-- tên sản phẩm -->
+                            <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id=<?=$item["sp_id"] ?>">
+                                <p><?=$item["sp_name"] ?></p>
+                            </a>
+
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5 class="color_price">
-                                    <?=number_format($item['sp_price'],0,",",".")?>đ
+                                <!-- gia sản phẩm -->
+                                
+                                <h5 class="color_price">
+                                    <?=number_format($item['sp_sale'],0,",",".")?>đ
                                 </h5>
                                 <h6 class="text-muted ml-2">
-                                    <del><?=number_format($item['sp_sale'],0,",",".")?>đ </del>
+                                    <del><?=number_format($item['sp_price'],0,",",".")?>đ </del>
                                 </h6>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
-          <?php  } ?>
+                <!-- ========= -->
+                <?php } ?>
             
         </div>
     </div>
