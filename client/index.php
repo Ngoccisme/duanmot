@@ -110,6 +110,20 @@ if (isset($_GET['url'])) {
                 $product = getProductFind($_POST['id']);
                 $error = '';
                 if(!empty( $_POST["size"]) && !empty( $_POST["color"]) ){
+                    // validate số lượng
+                    $quantity = intval($_POST["quantity"]);
+                        if ($quantity <= 0) {
+                            $error = 'Số lượng phải lớn hơn 0!';
+                            include('./views/product-detail.php');
+                            break;
+                        }
+
+                        // Giả sử $product[0]["sp_quantity"] là số lượng tồn kho hiện có của sản phẩm
+                        if ($quantity > $product[0]["sp_quantity"]) {
+                            $error = 'Số lượng vượt quá số lượng hiện có!';
+                            include('./views/product-detail.php');
+                            break;
+                        }
                     if (isset($_SESSION["cart"])) {
                         $cart = $_SESSION["cart"] ;
                         if (array_key_exists($_POST["id"], $cart)) {
@@ -186,10 +200,7 @@ if (isset($_GET['url'])) {
                     header("location:".BASE_CLIENT."?url=san-pham&key_word=" .$_POST['key_word']);
                 }
                 break;
-            default:
-                #code...
-            break;
-            // Trang giỏ hàng
+                  // Trang giỏ hàng
             case 'gio-hang':
                 // if(!isset($_SESSION["user"])){
                 //     header("location:".BASE_CLIENT."?dang-nhap");
@@ -210,10 +221,47 @@ if (isset($_GET['url'])) {
                 case 'lien-he':
                         include('./views/contact.php');
                     break;
+
+                    default:
+                    #code...
+                break;
+                // Trang thanh toán
+         case 'thanh-toan':
+            if(!isset($_SESSION["user"])){
+                header("location:".BASE_CLIENT."?dang-nhap");
+            }elseif (!isset($_SESSION["cart"])) {
+                header("location:".BASE_CLIENT."?url=san-pham");
+            }else{
+                $user = $_SESSION["user"];
+                $cart =  $_SESSION['cart'];
+                // dd($user);
+                include('./views/pay.php');
+                break;  
+            }
+
+         // Trang lưu thanh toán
+         case 'luu-thanh-toan':
+           if($_POST){
+             try {
+                $idNew = insertOrder($_POST);
+                $cart =  $_SESSION['cart'];
+                foreach( $cart as $key => $value){
+                    insertOrderDetail($value ,  $idNew);
+                }
+                unset($_SESSION["cart"]);
+                $_SESSION['success'] = 'Thanh toán thành công !!!';
+             } catch (\Throwable $th) {
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+             };
+            header("location:".BASE_CLIENT."");
+           }
+           break;
         
 
 
             }
+            
+          
     
     }else{
         $products = getProductAll();

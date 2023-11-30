@@ -15,6 +15,44 @@ ob_start();
     include('./views/layouts/header.php');
     if(isset($_GET['url'])&&($_GET['url']!="")){
         switch($_GET['url']){
+            //  Lưu đăng ký
+        case 'dang-ky-save':
+            if(isset($_POST)){
+                if(!empty($_FILES["kh_avatar"])){
+                    $fileName =  $_FILES["kh_avatar"]["name"];
+                    move_uploaded_file( $_FILES["kh_avatar"]["tmp_name"]  ,'../upload/' .   $fileName );
+                }
+                $_POST['kh_avatar'] = $fileName;
+                $_POST['kh_password'] = password_hash( $_POST['kh_password']  , PASSWORD_DEFAULT);
+                register($_POST);
+                header("location:".BASE_CLIENT."?dang-nhap");
+                die;
+            }
+            break;
+          //  Lưu đăng ký
+        case 'dang-nhap-save':
+            if(isset($_POST)){
+                if($_POST["email"] != '' && $_POST["password"] != ''){
+                    for ($i=0; $i < count(getAllUser()); $i++) { 
+                        if(trim(getAllUser()[$i]["kh_email"]) == trim($_POST["email"])){
+                            if(password_verify($_POST["password"] , getAllUser()[$i]["kh_password"])){
+                                $_SESSION["user"] = getAllUser()[$i];
+                               if (getAllUser()[$i]["role"] == 1) {
+                                  header("location:".BASE_CLIENT."");
+                               }else{
+                                  header("location: ../admin/index.php");
+                               }
+                            }
+                        }else{
+                            header("location:".BASE_CLIENT."?dang-nhap");
+                        }
+                    }
+                    
+                }else{
+                    header("location:".BASE_CLIENT."?dang-nhap");
+                }
+            }
+            break;
            // Trang danh sách danh mục
         case 'category':
             
@@ -307,10 +345,12 @@ ob_start();
                 break;
             
         }
-    }else{
+    }else if(isset($_SESSION["user"])){
         // Trang chính
         $chart = cateChart();
         include('./views/main.php');
+    }else{
+        header("location:".BASE_CLIENT."?dang-nhap");
     }
 
     include "./views/layouts/footer.php";

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./../assets/Css/Cart.css">
     <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
+        <div class="row2 px-xl-5">
+            <div class="col-lg-car table-responsive mb-5">
             <table class="table">
                 <thead>
                     <th>STT</th>
@@ -26,29 +26,26 @@
                             </div>
                         </td>
                         <td>
-                            <div class="number-input">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                    class="minus"><i class="fa-solid fa-minus"></i></button>
-                                <input class="quantity" min="0" name="quantity" value="<?=$value['number']?>" type="number">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                    class="plus"><i class="fa-solid fa-plus"></i></button>
-                            </div>
+                                <h5><?=$value['number']?></h5>
                         </td>
                         <td> <?=number_format($value['price'],0,",",".")?>đ</td>
                         <td> <?=number_format($value['price'] * $value['number'] ,0,",",".")?>đ</td>
                         <td>
-                            <a href="index.php?url=xoa-gio-hang&id=<?=$value["id"]?>" class="btn-delete-cart">Xóa</a>
+                            <a href="index.php?url=xoa-gio-hang&id=<?=$value["id"]?>" class="btn btn-danger rounded-lg"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
                         </td>
                     </tr>
                     <?php  } ?>
                 </tbody>
             </table>
-            </div>
-            <div class="col-lg-4">
             <div class="btn-table-footer">
-                <button  class="btn-footer btn-continue-now"><a href="index.php?url=san-pham"></i> Tiếp tục
-                        mua hàng</a></button>
+                <a href="index.php?url=san-pham">
+                    <button  class="border border-danger rounded-lg text-danger" style="height:50px;width: 190px; fonts-size:24px"> <i class='fas fa-long-arrow-alt-left' style='font-size:16px'></i> Tiếp tục mua hàng</button>
+                </a>
             </div>
+            </div>
+            
+            <div class="col-lg-4">
+            
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cộng giỏ hàng</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom pb-2">
@@ -66,7 +63,7 @@
                             <h5>Tổng tiền</h5>
                             <h5><?=number_format($total,0,",",".")?></h5>
                         </div>
-                        <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Cập nhật giỏ hàng
+                        <button class="btn btn-block rounded-lg btn-primary font-weight-bold my-3 py-3"><a style="color:#000;text-decoration: none;" href="index.php?url=thanh-toan">Tiền hành thanh toán</a>
                         </button>
                     </div>
                 </div>

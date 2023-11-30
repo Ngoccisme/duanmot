@@ -21,7 +21,7 @@
                 </div>
                 <span>hoặc sử dụng email của bạn để đăng kí</span>
                 <input type="text" name="kh_name" placeholder="Name">
-                <input type="file" name="kh_avata" type="text">
+                <input type="file" name="kh_avatar" type="text">
                 <input type="email" name="kh_email" placeholder="Email">
                 <input type="password" name="kh_password" placeholder="Password">
                 <input type="sdt" name="kh_phone" placeholder="Số Điện Thoại">

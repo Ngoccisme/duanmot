@@ -6,7 +6,7 @@
     }
 
     .colorActive {
-        border: 4px solid #319DA0;
+        border: 4px solid green;
     }
     .form-control-cmtt {
                 display: flex;
@@ -96,6 +96,8 @@
                 margin-left: 10px;
                 color: #8E0007;
             }
+          
+           
             
     </style>
 
@@ -116,75 +118,83 @@
 
     <!-- Shop Detail Start -->
     <div class="container-fluid pb-5">
-        <div class="row px-xl-5">
+    <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                <img id="expandedImg" src="./../upload/<?=$product[0]["sp_image"]?>" style="width:100%">
+                    <div class="carousel-inner bg-light">
+                        <img id="expandedImg" src="./../upload/<?=$product[0]["sp_image"]?>" >
+                     </div>
+                       
+                    
                 </div>
             </div>
 
             <div class="col-lg-7 h-auto mb-30">
-            <form action="index.php?url=add-gio-hang" method="POST">
-                        <input type="text" name="id" hidden value="<?=$product[0]["sp_id"]?>">
-                <div class="h-100 bg-light p-30">
+                <form action="index.php?url=add-gio-hang" method="POST" class="h-100 bg-light p-30">
+                            <input type="text" name="id" hidden value="<?=$product[0]["sp_id"]?>">
+                    <div >
                         <h3 class="product-name"><?=$product[0]["sp_name"]?></h3>
+                        <hr>
+                        <div class="product-item_price-wraper">
+                        <div class="product-price-main">
+                            <?=number_format($product[0]['sp_sale'],0,",",".")?>đ
+                        </div>
+                        <div class="product-price_sale color-text">
+                            <?=number_format(trim($product[0]['sp_price']),0,",",".")?>đ
+                        </div>
+                    </div>
+                      
+                        <div class="text_drank_size">
+                            <p class="text_size">Sizes:</p>
+                            <form>
+                                <?php foreach ($size as $key) { ?>
+                                    
+                                    <div class="product_detail_input">
+                                        <input type="radio" class="input_size" name="size" id="<?= $key['kt_id'] ?>" value="<?=$key['kt_name']?>">
+                                        <label class="name_size"  for="<?= $key['kt_id'] ?>"><?= $key['kt_name'] ?></label>
+                                    </div>
+                                <?php } ?>
+                                
+                            </form>
+                        </div>
+                        <div class="product-atribute_box">
+                        <p>Màu sắc : </p>
+                        <ul class="product-atribute_list-color">
+                            <?php  
+                                foreach ($color as $key) {
+                            ?>
+                                <label onClick="chooseColor()" for="color-<?=$key["ma_color"]?>" class="color_label"
+                                    style="background-color: <?=$key["ma_color"]?>"></label>
+                                <input id="color-<?=$key["ma_color"]?>" hidden name="color" value="<?=$key["kt_name"]?>" type="radio">
+                            <?php  }  ?>             
+                        </ul>
+                    </div>
                     <div class="d-flex mb-3">
                         <p class="alert-product-number">Còn <?=$product[0]['sp_quantity']?> sản phẩm</p>
-                        <p style="color : #8E0007;font-weight:bold"><?=$error?></p>
+                        <p style="color : #8E0007;font-weight:bold; margin-top: 15px; margin-left: 30px;"><?=$error?></p>
                     </div>
-                    <div class="product-item_price-wraper">
-                    <div class="product-price-main">
-                        <?=number_format($product[0]['sp_sale'],0,",",".")?>đ
-                    </div>
-                    <div class="product-price_sale color-text">
-                        <?=number_format(trim($product[0]['sp_price']),0,",",".")?>đ
-                    </div>
-                </div>
-                    <!-- <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p> -->
-                        <hr>
-                    <div class="d-flex mb-3">
-                        <strong class="text-dark mr-3">Sizes:</strong>
-                        <form>
-                            <?php
-                                foreach ($size as $key) { ?>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="<?= $key['kt_id'] ?>" hidden name="size" value="<?=$key['kt_name']?>">
-                                <label class="custom-control-label" for="<?= $key['kt_id'] ?>"><?= $key['kt_name'] ?></label>
-                            </div>
-                               <?php } ?>
-                            
-                        </form>
-                    </div>
-                    <div class="product-atribute_box">
-                    <p>Màu sắc : </p>
-                    <ul class="product-atribute_list-color">
-                        <?php  
-                    foreach ($color as $key) {
-                     ?>
-                        <label onClick="chooseColor()" for="color-<?=$key["ma_color"]?>" class="color_label"
-                            style="background-color: <?=$key["ma_color"]?>"></label>
-                        <input id="color-<?=$key["ma_color"]?>" hidden name="color" value="<?=$key["kt_name"]?>" type="radio">
-                        <?php  }  ?>             
-                    </ul>
-                </div>
+                    
                     <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="number-input">
-                        <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                            class="minus"><i class="fa-solid fa-minus"></i></a>
-                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                        <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                            class="plus"><i class="fa-solid fa-plus"></i></a>
-                    </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button>
-                    </div>
+                        <div class="number-input">
+                                <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"><i class="fa fa-minus"></i>
+                                </a>
+                            <input class="quantity" min="0" name="quantity" value="1" type="number">
 
+                            <a class="btn-control" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"><i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button>
+                        </div>
+
+                    </div>
                 </div>
+            </form>
             </div>
-        </form>
         </div>
+ 
         <div class="row px-xl-5">
             <div class="col">
                 <div class="bg-light p-30">
@@ -208,7 +218,7 @@
                                         <div class="form-control-input-box">
                                             <input class="form-control-input" name="content" type="text"
                                                 placeholder="Đánh giá của bạn ...">
-                                            <button class="btn__submit" type="submit"> <i class="fa-solid fa-paper-plane"></i></button>
+                                            <button class="btn__submit" type="submit"> <i class='fas fa-arrow-alt-circle-right' style='font-size:36px'></i></i></button>
                                         </div>
                                     </div>
                                 </form>
@@ -224,7 +234,7 @@
                                                 </p>
                                                 <?php if(isset($_SESSION["user"])){
                                                     if($_SESSION["user"]["kh_id"] ==  $key["kh_id"]){ ?>
-                                                    <a  onclick="return confirm('Bạn có muốn xoá danh mục này ?')"  href="index.php?url=binh-luan-delete&id=<?= $key["cntt_id"]?>"   class="cmtt__delete"><i class="fa-solid fa-xmark"></i></a>
+                                                    <a  onclick="return confirm('Bạn có muốn xoá danh mục này ?')"  href="index.php?url=binh-luan-delete&id=<?= $key["cntt_id"]?>"   class="cmtt__delete"><i class="fa-solid fa-xmark"></i>xóa</a>
                                                     <?php   } ?>
                                                 <?php   } ?>
                                             </div>
@@ -232,58 +242,7 @@
                                     </div>
                                 <?php  } ?>
                         </div>
-                        <!-- <div class="tab-pane fade" id="tab-pane-3">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">1 review for "Product Name"</h4>
-                                    <div class="media mb-4">
-                                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                        <div class="media-body">
-                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                            <div class="text-primary mb-2">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">Leave a review</h4>
-                                    <small>Your email address will not be published. Required fields are marked *</small>
-                                    <div class="d-flex my-3">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
-                                        <div class="text-primary">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Your Name *</label>
-                                            <input type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Your Email *</label>
-                                            <input type="email" class="form-control" id="email">
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> -->
+                        
                     </div>
                 </div>
             </div>

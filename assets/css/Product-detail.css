@@ -82,12 +82,12 @@
 .product-item_price-wraper .product-price-main {
   color: #f70915;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 2.3rem;
 }
 
 .product-item_price-wraper .product-price_sale {
   margin-left: 15px;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   margin-top: 4px;
   text-decoration: line-through;
   color: #444;
@@ -128,6 +128,7 @@
 .product-atribute_box p {
   font-weight: 600;
   color: #333;
+  font-size: 25px;
 
 }
 
@@ -144,6 +145,7 @@
   margin-right: 20px;
   border-radius: 50px;
   cursor: pointer;
+  box-shadow: 5px 0px 18px #666;
 }
 
 .product-atribute_list-size label{
@@ -184,7 +186,22 @@ input[type=number]::-webkit-outer-spin-button {
   display: inline-flex;
   margin: 10px 0px;
 }
-
+.number-input a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  color: #000;
+  cursor: pointer;
+  background: #FFD333;
+}
+.number-input a:hover{
+  text-decoration: none;
+}
+.number-input a:active{
+  text-decoration: none;
+  border: 2px solid green;
+}
 .number-input,
 .number-input * {
   box-sizing: border-box;
@@ -344,4 +361,33 @@ input[type=number]::-webkit-outer-spin-button {
 
 .product-related_title{
   margin-top: 50px;
+}
+
+.product_detail_input{
+  display: flex;
+  align-items: center;
+}
+.input_size{
+  margin-left: 20px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid;
+}
+
+.text_drank_size{
+  width: 100%;
+  height: 40px;
+  display: inline-flex;
+  margin-top: 20px;
+}
+.name_size{
+  font-size: 25px;
+  margin-left: 10px;
+  font-weight: 600;
+  color: #000;
+  }
+.text_size{
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
 }

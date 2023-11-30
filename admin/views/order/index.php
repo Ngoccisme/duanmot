@@ -31,6 +31,25 @@
                     <a onclick="return confirm('Bạn có muốn xoá danh mục này ?')"
                         href="index.php?url=order-delete-save&id=<?=$item['hd_id']?>" class="btn btn-danger">Xóa</a>
                 </td>
+                <td>
+                <td>
+                <td>
+                    <select id="newStatus<?=$item['hd_id']?>" class="form-control">
+                        <option value="pending" <?=($item['status'] == 'pending') ? 'selected' : ''?>>Chờ xác nhận</option>
+                        <option value="processing" <?=($item['status'] == 'processing') ? 'selected' : ''?>>Đang giao</option>
+                        <option value="completed" <?=($item['status'] == 'completed') ? 'selected' : ''?>>Hoàn thành</option>
+                        <option value="cancelled" <?=($item['status'] == 'cancelled') ? 'selected' : ''?>>Đã hủy</option>
+                    </select>
+                </td>
+                <td>
+                    
+                    <form action="update_order_status.php" method="POST">
+            <!-- Thêm input ẩn để truyền orderId -->
+                        <input type="hidden" name="orderId" value="<?=$item['hd_id']?>">
+                        <button class="btn btn-primary">Cập nhật</button>
+                    </form>
+                </td>
+            </td>
             </tr>
             <?php } ?>
         </tbody>

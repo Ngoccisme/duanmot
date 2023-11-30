@@ -56,5 +56,9 @@ function insertOrderDetail($data , $orderId){
      VALUES ('".$data["name"]."','".$data["img"]."','".$data["price"]."','".$data["number"]."',".$orderId.",".$data["id"].")");
     $stmt->execute();
 }
-
+function updateStatus($name , $id){
+    $conn = connect();
+    $stmt = $conn->prepare("UPDATE  order  SET  status = '".$name."' WHERE order.dh_id = ".$id."" );
+    $stmt->execute();
+}
 ?>
