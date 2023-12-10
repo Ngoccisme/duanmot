@@ -19,6 +19,7 @@
                     <td><?=$index++ ?></td>
                     <td><?=$item['kh_name'] ?></td>
                     <td><img style="width:50px;height:50px;border-radius:50px" src="../upload/<?=$item['kh_avatar'] ?>" alt=""></td>
+
                     <td><?=$item['kh_email'] ?></td>
                     <td><?=$item['kh_phone'] ?></td>
                     <td><?=$item['role'] == 1 ? 'Khách hàng' : 'Quản trị' ?></td>

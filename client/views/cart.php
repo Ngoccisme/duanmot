@@ -12,7 +12,11 @@
                     <th>Xoá</th>
                 </thead>
                 <tbody>
-                    <?php $index= 1;$total = 0; foreach($cart as $key => $value){
+                    <?php 
+                    $index= 1;
+                    $total = 0;
+                    // if (isset($cart) && is_array($cart)) { // Kiểm tra xem $cart đã tồn tại và là một mảng không
+                     foreach($cart as $key => $value){
                         $total+=$value['price'] * $value['number'];  ?>
                     <tr>
                         <td><?=$index++?></td>
@@ -26,7 +30,18 @@
                             </div>
                         </td>
                         <td>
-                                <h5><?=$value['number']?></h5>
+                            <div class="number-input">
+                                <!-- <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    class="minus"><i class="fa fa-minus"></i>
+                                </button>
+
+                                <input class="quantity" min="0" name="quantity" value="<?=$value['number']?>" type="number">
+
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus"><i class="fa fa-plus"></i>
+                                </button> -->
+                                    <h4><?=$value['number']?></h4>
+                            </div>
                         </td>
                         <td> <?=number_format($value['price'],0,",",".")?>đ</td>
                         <td> <?=number_format($value['price'] * $value['number'] ,0,",",".")?>đ</td>
@@ -34,7 +49,11 @@
                             <a href="index.php?url=xoa-gio-hang&id=<?=$value["id"]?>" class="btn btn-danger rounded-lg"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
                         </td>
                     </tr>
-                    <?php  } ?>
+                    <?php  }
+                        // }else {
+                        //     echo '<tr><td colspan="6">Không có sản phẩm trong giỏ hàng.</td></tr>';
+                        // }
+                    ?>
                 </tbody>
             </table>
             <div class="btn-table-footer">

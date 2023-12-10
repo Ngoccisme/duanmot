@@ -11,6 +11,10 @@
 <div class="container" id="container">
         <div class="form-container sign-up">
 
+
+
+
+
             <form action="index.php?url=dang-ky-save" method="POST" enctype="multipart/form-data" >
                 <h1>Tạo Tài Khoản</h1>
                 <div class="social-icons">
@@ -29,6 +33,18 @@
             </form>
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="form-container sign-in">
             <form action="index.php?url=dang-nhap-save" method="POST" enctype="multipart/form-data">
                 <h1>ĐĂNG NHẬP</h1>
@@ -46,6 +62,14 @@
             </form>
         </div>
 
+
+
+
+
+
+
+
+
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
@@ -62,5 +86,5 @@
         </div>
     </div>
 </body>
-<script src="../assets/js/script.js"></script>
+<script src="../assets/js/login.js"></script>
 </html>

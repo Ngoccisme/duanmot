@@ -9,7 +9,6 @@
                 <th scope="col">Tên</th>
                 <th scope="col">Ảnh</th>
                 <th scope="col">Nội dung</th>
-                <th scope="col text-center" width="80px">Xoá</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +20,7 @@
                  <td><img width="50px" class="rounded-circle" src="../upload/<?=$item['kh_avatar']?>"  alt=""></td>
                  <td><?=$item['content']?></td>
                  <td>
-                    <a onclick="return confirm('Bạn có muốn xoá danh mục này ?')"  href="index.php?url=product-cmtt-delete&id=<?=$item['cntt_id']?>"  class="btn btn-danger">Xóa</a>
+                    <!-- <a onclick="return confirm('Bạn có muốn xoá danh mục này ?')"  href="index.php?url=product-cmtt-delete&id=<?=$item['cntt_id']?>"  class="btn btn-danger">Xóa</a> -->
                  </td>
             </tr>
             <?php } ?>

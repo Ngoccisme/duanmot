@@ -22,7 +22,7 @@
                         aria-describedby="emailHelp">
                     <p class="text-danger"><?=$error?></p>
                 </div>
-                <button type="submit" class="bg-main">Thêm danh mục</button>
+                <button type="submit" class="btn btn-info">Thêm danh mục</button>
             </form>
             <?php } ?>
         </div>

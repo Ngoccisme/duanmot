@@ -96,8 +96,51 @@
                 margin-left: 10px;
                 color: #8E0007;
             }
-          
-           
+
+         
+
+            #product-carousel {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #expandedImg {
+            width: 100%;
+            height: auto;
+        }
+
+        #zoom-lens {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #fff;
+            background: rgba(0, 0, 0, 0.2);
+            visibility: hidden;
+            pointer-events: none;
+            background-size: 1000px 1000px;
+            background-repeat: no-repeat;
+            margin-left: 500px;
+        }
+
+        #cursor-overlay {
+            position: fixed;
+            width: 60px;
+            height: 50px;
+            border: 2px solid #fff;
+            background: rgba(0, 0, 0, 0.2);
+            visibility: hidden;
+            pointer-events: none;
+        }
             
     </style>
 
@@ -106,9 +149,9 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop Detail</span>
+                    <a class="breadcrumb-item text-dark" href="#">Trang Chủ</a>
+                    <a class="breadcrumb-item text-dark" href="#">Cửa Hàng</a>
+                    <span class="breadcrumb-item active">Chi tiết sản phẩm</span>
                 </nav>
             </div>
         </div>
@@ -121,9 +164,12 @@
     <div class="row px-xl-5">
             <div class="col-lg-5 mb-30">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
+                    <div class="carousel-inner bg-light product-container">
                         <img id="expandedImg" src="./../upload/<?=$product[0]["sp_image"]?>" >
+                        
+                        <div id="cursor-overlay"></div>
                      </div>
+                     
                        
                     
                 </div>
@@ -143,6 +189,7 @@
                             <?=number_format(trim($product[0]['sp_price']),0,",",".")?>đ
                         </div>
                     </div>
+                    <div id="zoom-lens"></div>
                       
                         <div class="text_drank_size">
                             <p class="text_size">Sizes:</p>
@@ -187,6 +234,8 @@
                         </div>
                             </div>
                             <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm giỏ hàng</button>
+                           
+                    </button>
                         </div>
 
                     </div>
@@ -259,40 +308,51 @@
     }
     </style>
     <div class="container-fluid py-5">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sản phẩm liên quan</span></h2>
-        <div class="row px-xl-5">
-        <?php foreach($productRelate as $item){ ?> 
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+        <span class="bg-secondary pr-3">Sản phẩm liên quan</span>
+    </h2>
+    <div class="row px-xl-5">
+        <?php
+        // Kiểm tra xem biến $productRelate đã được khởi tạo và có giá trị không
+        if (isset($productRelate) && is_array($productRelate) && !empty($productRelate)) {
+            foreach ($productRelate as $item) {
+        ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
-                                <!-- ảnh sản phẩm  -->
-                                <a href="index.php?url=san-pham-chi-tiet&id=<?= $item["sp_id"] ?>"><img class="img-fluid w-100" src=".././upload/<?=$item["sp_image"] ?>" alt=""></a>
+                            <!-- ảnh sản phẩm  -->
+                            <a href="index.php?url=san-pham-chi-tiet&id=<?= $item["sp_id"] ?>"><img class="img-fluid w-100" src=".././upload/<?= $item["sp_image"] ?>" alt=""></a>
                         </div>
                         <div class="text-center py-4">
                             <!-- tên sản phẩm -->
-                            <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id=<?=$item["sp_id"] ?>">
-                                <p><?=$item["sp_name"] ?></p>
+                            <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id=<?= $item["sp_id"] ?>">
+                                <p><?= $item["sp_name"] ?></p>
                             </a>
 
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <!-- gia sản phẩm -->
-                                
                                 <h5 class="color_price">
-                                    <?=number_format($item['sp_sale'],0,",",".")?>đ
+                                    <?= number_format($item['sp_sale'], 0, ",", ".") ?>đ
                                 </h5>
                                 <h6 class="text-muted ml-2">
-                                    <del><?=number_format($item['sp_price'],0,",",".")?>đ </del>
+                                    <del><?= number_format($item['sp_price'], 0, ",", ".") ?>đ </del>
                                 </h6>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
-                <!-- ========= -->
-                <?php } ?>
-            
-        </div>
+        <?php
+            }
+        } else {
+            echo '<div class="col-12"><p>Không có sản phẩm liên quan.</p></div>';
+         }?>
+        
+       
+    
+        
     </div>
+</div>
+
     <!-- Products End -->
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -326,3 +386,60 @@
     <script src="./../assets/js/list-cart.js"></script>
     <script src="./../assets/js/click-dropdown.js"></script>
     <script src="./../assets/js/back-top.js"></script>
+    <!-- <script src="./../assets/js/ajax.js"></script> -->
+    <!-- Đảm bảo bạn đã bao gồm thư viện jQuery trước khi sử dụng mã này -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    // Hàm thực hiện yêu cầu AJAX để cập nhật số lượng sản phẩm
+    function updateProductQuantityAjax(productId, updatedQuantity) {
+        $.ajax({
+            type: "POST",
+            url: "update_quantity.php", // Điều chỉnh đường dẫn tương ứng
+            data: { id: productId, quantity: updatedQuantity },
+            success: function(response) {
+                console.log("Số lượng sản phẩm đã được cập nhật thành công!");
+                // Có thể thực hiện các hành động khác sau khi cập nhật thành công
+            },
+            error: function(error) {
+                console.error("Lỗi khi cập nhật số lượng sản phẩm: " + error);
+                // Xử lý lỗi nếu có
+            }
+        });
+    }
+    var productContainer = document.getElementById('product-carousel');
+        var productImage = document.getElementById('expandedImg');
+        var zoomLens = document.getElementById('zoom-lens');
+        var cursorOverlay = document.getElementById('cursor-overlay');
+
+        productContainer.addEventListener('mouseover', function () {
+            zoomLens.style.visibility = 'visible';
+            cursorOverlay.style.visibility = 'visible';
+        });
+
+        productContainer.addEventListener('mousemove', function (event) {
+            var rect = productContainer.getBoundingClientRect();
+            var scaleX = productImage.width / rect.width;
+            var scaleY = productImage.height / rect.height;
+            var x = event.clientX - rect.left;
+            var y = event.clientY - rect.top;
+
+            // Cập nhật vị trí zoom lens
+            var lensX = (x * scaleX   + 10) / scaleX;
+            var lensY = (y * scaleY  - 50) / scaleY;
+            zoomLens.style.backgroundImage = 'url(' + productImage.src + ')';
+            zoomLens.style.backgroundPosition = '-' + lensX + 'px -' + lensY + 'px';
+
+            // Cập nhật vị trí của lớp phủ con trỏ
+            cursorOverlay.style.left = event.clientX - cursorOverlay.clientWidth / 2 + 'px';
+            cursorOverlay.style.top = event.clientY - cursorOverlay.clientHeight / 2 + 'px';
+        });
+
+        productContainer.addEventListener('mouseout', function () {
+            zoomLens.style.visibility = 'hidden';
+            cursorOverlay.style.visibility = 'hidden';
+        });
+
+    
+</script>
+    

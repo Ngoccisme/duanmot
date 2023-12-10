@@ -1,10 +1,5 @@
-<style>
-    .img-fluid {
-    max-width: 100%;
-    height: 300px;
-    }
-</style>
-<div class="title-box text-center">
+
+    <div class="title-box text-center">
         <h3 style="color:red">Tất cả sản phẩm</h3>
     </div>
     
@@ -22,16 +17,8 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">GIÁ SẢN PHẨM</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">All Price</label>
-                            <span class="badge border font-weight-normal"></span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$0 - $100</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
+                      
+
                         
                       
                     </form>
@@ -58,11 +45,9 @@
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">SIZE SẢN PHẨM</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <form>
-                        <!-- <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">All Size</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div> -->
+                        
+                        
+
                         <?php foreach($size as $key){ ?>
                             <li class="list_size">
                                 <a href="index.php?url=san-pham&size=<?= $key['kt_id'] ?>">
@@ -98,12 +83,12 @@
                         </div>
                     </div>
                     <?php foreach($products as $item) { ?>
-                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                        <div class="product-item bg-light mb-4">
+                    <div class="col-lg-4 col-md-6 col-sm-6 pb-1" >
+                        <div class="product-item bg-light mb-4" >
                             <div class="product-img position-relative overflow-hidden">
-
-                            <a href="index.php?url=san-pham-chi-tiet&id=<?= $item["sp_id"] ?>"><img class="img-fluid w-100" src=".././upload/<?=$item["sp_image"] ?>" alt=""></a>
-
+                                <a href="index.php?url=san-pham-chi-tiet&id=<?=$item["sp_id"] ?>">
+                                    <img class="img-fluid w-100" src="./../upload/<?=$item["sp_image"] ?>" alt="">
+                                </a>
                                 
                             </div>
 
@@ -142,3 +127,4 @@
             <!-- Shop Product End -->
         </div>
     </div>
+

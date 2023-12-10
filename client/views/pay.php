@@ -1,3 +1,7 @@
+<?php
+date_default_timezone_set('Asia/Ho_Chi_Minh'); // Đặt múi giờ Việt Nam
+$order_date_vietnam = date('Y-m-d H:i:s');
+?>
 <link rel="stylesheet" href="./../assets/Css/Pay.css">
 <div class="content padding-container text-center">
     <h3 class="title-page-name commom-title text-center">Thanh toán</h3>
@@ -8,6 +12,9 @@
             <input type="text" hidden value="<?=$user["kh_id"]?>" name="kh_id"> 
             <input type="text" value="<?=$user["kh_name"]?>" name="kh_name" class="input-contact" placeholder="Tên của bạn ">
             <input type="text" value="<?=$user["kh_email"]?>"  name="kh_email" class="input-contact" placeholder="Email của bạn">
+            <!-- <input type="hidden" name="order_date" value="<?= date('Y-m-d H:i:s') ?>"> -->
+            <input type="hidden" name="order_date" value="<?= $order_date_vietnam ?>">
+
             <div class="form-grid-input">
                 <input type="text" class="input-contact" name="kh_address" placeholder="Địa chỉ của bạn ">
                 <input type="text" class="input-contact" name="kh_phone"  value="<?=$user["kh_phone"]?>" placeholder="Số điện thoại của bạn">
@@ -34,7 +41,7 @@
                 <p class="order-note">Sau khi quý khách đặt hàng. Chúng tôi sẽ gửi thông tin đơn hàng qua Email và gọi
                     điện xác nhận đơn hàng. Sau đó sẽ tiến hành vận chuyển hàng. Quý khách thanh toán khi nhận được hàng
                 </p>
-                <button href="" class="btn btn-block rounded-lg btn-primary font-weight-bold my-3 py-3">Tiền hành thanh toán</button>
+                <button href="" name="submit" type="submit" class="btn btn-block rounded-lg btn-primary font-weight-bold my-3 py-3">Đặt Hàng</button>
             </div>
         </div>
     </form>

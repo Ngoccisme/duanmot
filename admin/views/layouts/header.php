@@ -30,7 +30,7 @@
             <div class="container-fluid">
                 <div class="container d-flex justify-content-between align-items-center">
                     <div class="d-flex justify-content-start align-items-center">
-                        <a class="navbar-brand text-white fs-3" href="#">Quản trị</a>
+                        <a class="navbar-brand text-white fs-3" href="">Quản trị</a>
                         <div class="collapse navbar-collapse ml-5" id="navbarNav">
                             <ul class="navbar-nav">
                                 <?php foreach($MenuAdmin as $item => $value){ ?>
@@ -51,7 +51,7 @@
                             <li><a class="dropdown-item" href="../client/index.php?logout">Đăng xuất</a></li>
                         </ul>
                         <?php }else{ ?>
-                            <a class="text-white" href="">Đăng nhập</a>
+                            <a class="text-white" href="#">Đăng Nhập</a>
                         <?php  } ?>
                     </div>
                 </div>

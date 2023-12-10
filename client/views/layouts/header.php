@@ -24,6 +24,9 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../assets/css/style.css" rel="stylesheet">
+    <!-- Thêm thư viện jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    
     <style>
         
     </style>
@@ -61,9 +64,7 @@
                     </div>
                 </div> -->
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    <a href="login.html">
-                        <i class="fas fa-user" style="padding-bottom: 2px;"></i>
-                    </a>    
+                    <i class="fa fa-user" style="font-size:36px"></i>   
 
 
                     <a href="" class="btn px-0 ml-2">
@@ -80,8 +81,9 @@
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Nhóm</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">2</span>
+                    <!-- <span class="h1 text-uppercase text-primary bg-dark px-2">Nhóm</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">2</span> -->
+                    <img src="./../img/logo.png"  style="width:300px;height:100px"alt="">
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
@@ -90,7 +92,7 @@
                         <input type="text" class="form-control" name="key_word" placeholder="Tìm kiếm sản phẩm">
                         <div class="input-group-append">
                             <button type="submit" class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
+                                <i class="fa fa-search text-dark"></i>
                             </button>
                         </div>
                     </div>
@@ -107,11 +109,11 @@
 
 
     <!-- Navbar Start -->
-    <div class="container-fluid bg-dark mb-30">
+    <div class="container-fluid bg-dark-header mb-30" >
         <div class="row px-xl-5">
            
             <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
+                <nav class="navbar navbar-expand-lg bg-dark-header navbar-dark py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
                         <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
                         <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
@@ -121,40 +123,41 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="index.php?url=san-pham" class="nav-item nav-link">Cửa Hàng</a>
-                            <div class="nav-item dropdown">
+                            <a href="index.php" class="nav-item nav-link-text ">Trang Chủ</a>
+                            <a href="index.php?url=san-pham" class="nav-item nav-link-text ">Cửa Hàng</a>
+                            <!-- <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="index.php?url=gio-hang" class="dropdown-item">Giỏ Hàng</a>
-                                    <a href="thanhtoan.html" class="dropdown-item">Thanh Toán</a>
+                                    <a href="giohang.html" class="dropdown-item">Giỏ Hàng</a>
+                                    <a href="index.php?url=lich-su" class="dropdown-item">Lịch sử đơn hàng</a>
                                 </div>
-                            </div>
-                            <a href="index.php?url=lien-he" class="nav-item nav-link">Liên Hệ</a>
+                            </div> -->
+                            <a href="index.php?url=lich-su" class="nav-item nav-link-text">Lịch sử đơn hàng</a>
+                            <a href="index.php?url=lien-he" class="nav-item nav-link-text">Liên Hệ</a>
                         </div>
-                        
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                        <?php if(isset($user)){ ?>
+                            <?php if(isset($user)){ ?>
+                               
                                 <a href="" class="btn px-0  "  data-toggle="dropdown">
-                                    <i class="fa fa-user" style="font-size:20px;color:red"></i>
+                                    <i class="fa fa-user text-dark" style="font-size:20px;color:red"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                <p>
-                                        <td><img width="30px" style="height:30px;border-radius:30px;margin-right:10px"
-                                        src="../upload/<?=$user['kh_avatar']?>" alt=""></td>
-                                </p>
+                                        <td class="anh_account"><img width="30px" style="height:30px;border-radius:30px;margin-right:10px;margin-left: 50px;"
+                                                src="../upload/<?=$user['kh_avatar']?>" alt="">
+                                        </td>
 
                                     <div class="dropdown-item">
                                         <p  lass="name_user" style="font-weight: bold;cursor: pointer; "><?=$user['kh_name']?> </p>
                                         
                                     </div>
+                                    <div><a href="index.php?url=lich-su" class="dropdown-item">Lịch sử đơn hàng</a></div>
                                     <a class="dropdown-item" href="?logout">Đăng xuất</a>
                                 </div>
 
                             <?php }else{ ?>
                             <a href="" class="btn px-0  "  data-toggle="dropdown">
-                                <i class="fa fa-user" style="font-size:20px;color:red"></i>
+                                <i class="fa fa-user text-dark" style="font-size:25px;"></i>
                             </a>
 
 
@@ -163,16 +166,20 @@
                                 <a class="dropdown-item" href="?dang-ky">Đăng Ký</a>
                             </div>
                             <?php } ?>
-                            <a href="" class="btn px-0">
-                                <i class="fas fa-heart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            
+                            <a href="" class="btn px-0 ml-3">
+                                <i class="fas fa-heart text-dark" style="font-size:20px"></i>
+                                <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="index.php?url=gio-hang" class="btn px-0 ml-3">
-                                <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;"><?= isset($_SESSION["cart"]) ?  count($_SESSION["cart"]) : 0;?></span>
+                            <a href="index.php?url=gio-hang" class="btn px-0 ml-3" >
+                                <i class="fas fa-shopping-cart text-dark" style="font-size:20px"></i>
+                                <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;"><?= isset($_SESSION["cart"]) ?  count($_SESSION["cart"]) : 0;?></span>
                             </a>
+                            
                         </div>
+                        
                     </div>
+                    
                 </nav>
             </div>
         </div>
