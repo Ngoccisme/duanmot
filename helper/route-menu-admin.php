@@ -2,8 +2,12 @@
 
 $MenuAdmin =  [
     [
-        "name" => 'Thống Kê',
+        "name" => 'Trang chính',
         "route" => 'trang-chinh',
+    ],
+    [
+        "name" => 'Thống kê',
+        "route" => 'thong-kee',
     ],
     [
         "name" => 'Danh mục',

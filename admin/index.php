@@ -1,12 +1,13 @@
 <?php
-    session_start();
-    ob_start();
+session_start();
+ob_start();
     include('./../model/connect.php');
     include('./../model/category.php');
     include('./../model/product.php');
     include('./../model/size.php');
     include('./../model/order.php');
     include('./../model/user.php');
+    include('./../model/thongke.php');
     include('./../helper/dd.php');
     include('./../helper/baseUrl.php');
     include('./../helper/route-menu-admin.php');
@@ -15,6 +16,44 @@
     include('./views/layouts/header.php');
     if(isset($_GET['url'])&&($_GET['url']!="")){
         switch($_GET['url']){
+            //  Lưu đăng ký
+        case 'dang-ky-save':
+            if(isset($_POST)){
+                if(!empty($_FILES["kh_avatar"])){
+                    $fileName =  $_FILES["kh_avatar"]["name"];
+                    move_uploaded_file( $_FILES["kh_avatar"]["tmp_name"]  ,'../upload/' .   $fileName );
+                }
+                $_POST['kh_avatar'] = $fileName;
+                $_POST['kh_password'] = password_hash( $_POST['kh_password']  , PASSWORD_DEFAULT);
+                register($_POST);
+                header("location:".BASE_CLIENT."?dang-nhap");
+                die;
+            }
+            break;
+          //  Lưu đăng ký
+        case 'dang-nhap-save':
+            if(isset($_POST)){
+                if($_POST["email"] != '' && $_POST["password"] != ''){
+                    for ($i=0; $i < count(getAllUser()); $i++) { 
+                        if(trim(getAllUser()[$i]["kh_email"]) == trim($_POST["email"])){
+                            if(password_verify($_POST["password"] , getAllUser()[$i]["kh_password"])){
+                                $_SESSION["user"] = getAllUser()[$i];
+                               if (getAllUser()[$i]["role"] == 1) {
+                                  header("location:".BASE_CLIENT."");
+                               }else{
+                                  header("location: ../admin/index.php");
+                               }
+                            }
+                        }else{
+                            header("location:".BASE_CLIENT."?dang-nhap");
+                        }
+                    }
+                    
+                }else{
+                    header("location:".BASE_CLIENT."?dang-nhap");
+                }
+            }
+            break;
            // Trang danh sách danh mục
         case 'category':
             
@@ -179,7 +218,7 @@
             $errorSize = '';
             $product = getProductFind($_POST['sp_id']);
             if(!empty($_POST["sp_price"]) && !empty($_POST["sp_sale"])){
-                if((int)$_POST["sp_price"]    < (int)$_POST["sp_sale"]){
+                if((int)$_POST["sp_price"]    <  (int)$_POST["sp_sale"]){
                     $errorPriceSale = 'Giá giảm phải lớn hơn giá gốc !!!';
                 }
             }
@@ -216,10 +255,6 @@
            
               break;
         break;
-        // case 'order':
-        //     $order = orderAll();
-        //     include('./views/order/index.php');
-        //     break;
         case 'order':
             $order = orderAll();
 
@@ -234,22 +269,20 @@
 
             include('./views/order/index.php');
             break;
-        
-        case 'update_order':
-            $order = orderAll();
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['newStatus']) && is_array($_POST['newStatus'])) {
-                    foreach ($_POST['newStatus'] as $orderId => $newStatus) {
-                        // Gọi hàm để cập nhật trạng thái
-                        updateOrderStatus($orderId, $newStatus);
+            case 'update_order':
+                $order = orderAll();
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if (isset($_POST['newStatus']) && is_array($_POST['newStatus'])) {
+                        foreach ($_POST['newStatus'] as $orderId => $newStatus) {
+                            // Gọi hàm để cập nhật trạng thái
+                            updateOrderStatus($orderId, $newStatus);
+                        }
                     }
                 }
-            }
-            
-            header("location:".BASE_ADMIN."order");
-            break;
-       
-           
+                
+                header("location:".BASE_ADMIN."order");
+                break;
+
         case 'order-delete-save':
             if(isset($_GET['id'])){
                 orderDelete($_GET['id']);
@@ -334,27 +367,25 @@
                 updateUser($_POST);
                 header("location:".BASE_ADMIN."account");
                 break;
-            case 'update-status':
-                // Lấy dữ liệu từ form
-                $orderId = $_POST['orderId'];
-                $newStatus = $_POST['newStatus'];
+                case 'thong-kee':
+                    $listthongke = thongKe();
+                    include ('./views/thongke/doanhso.php');
+                  
+                    break;
 
-                // Kiểm tra và làm sạch dữ liệu nếu cần
-
-                // Cập nhật cơ sở dữ liệu
-                // Giả sử $conn là biến kết nối của bạn
-                $sql = "UPDATE ten_bang_don_hang SET trang_thai = '$newStatus' WHERE id_don_hang = $orderId";
-
-                if ($conn->query($sql) === TRUE) {
-                    echo "Cập nhật trạng thái thành công";
-                } else {
-                    echo "Lỗi khi cập nhật trạng thái: " . $conn->error;
-                }
-
-                // Đóng kết nối cơ sở dữ liệu nếu cần
-            default:
-                 # code..
-                break;
+                case 'bieudo':
+                    $chart = cateChart();
+                    include('./views/thongke/thongkesp.php');
+                    break;
+                    case 'bieudo2':
+                        $sanphambanchay = spbanchay();
+                        include('./views/thongke/spbanchay.php');
+                        break;
+                        case 'bieudo3':
+                            $tongdoanhthu = thongke2();
+                            include('./views/thongke/doanhthu.php');
+                            break;
+            
         }
     }else if(isset($_SESSION["user"])){
         // Trang chính
@@ -363,8 +394,6 @@
     }else{
         header("location:".BASE_CLIENT."?dang-nhap");
     }
-    
-    include('./views/layouts/footer.php');
-    
+
+    include "./views/layouts/footer.php";
     ob_end_flush();
-?>
