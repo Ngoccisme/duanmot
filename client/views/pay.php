@@ -12,7 +12,6 @@ $order_date_vietnam = date('Y-m-d H:i:s');
             <input type="text" hidden value="<?=$user["kh_id"]?>" name="kh_id"> 
             <input type="text" value="<?=$user["kh_name"]?>" name="kh_name" class="input-contact" placeholder="Tên của bạn ">
             <input type="text" value="<?=$user["kh_email"]?>"  name="kh_email" class="input-contact" placeholder="Email của bạn">
-            <!-- <input type="hidden" name="order_date" value="<?= date('Y-m-d H:i:s') ?>"> -->
             <input type="hidden" name="order_date" value="<?= $order_date_vietnam ?>">
 
             <div class="form-grid-input">

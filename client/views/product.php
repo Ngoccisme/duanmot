@@ -91,7 +91,6 @@
                                 </a>
                                 
                             </div>
-
                             <div class="text-center py-4">
                                 <a class="h6 text-decoration-none text-truncate" href="index.php?url=san-pham-chi-tiet&id=<?=$item["sp_id"] ?>">
                                     <p><?=$item["sp_name"] ?></p>

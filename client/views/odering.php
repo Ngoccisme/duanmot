@@ -83,7 +83,7 @@ function showThankYouMessage() {
 
 // Nút "Tiếp tục mua hàng"
 $('#continueShopping').on('click', function() {
-    window.location.href = "index.php?url=san-pham";
+    window.location.href = "index.php";
 });
 
 // Nút "Đơn hàng của bạn"

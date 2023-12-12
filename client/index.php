@@ -184,7 +184,7 @@
                     header("location:".BASE_CLIENT."?url=gio-hang");
                 }else{
                     $error = 'Bạn chưa chọn thuộc tính !!!';
-                    include('./views/product-detail.php');
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
                 
                 $_SESSION['cart'] = $cart;
@@ -195,14 +195,22 @@
                 break;
 
                 // Trang giỏ hàng
-            case 'gio-hang':
-                // đăng nhập mới vào đặt hàng đc 
-                // if(!isset($_SESSION["user"])){
-                //     header("location:".BASE_CLIENT."?dang-nhap");
-                // }
-                $cart =  $_SESSION['cart'];
-                include('./views/cart.php');
-                break;
+                case 'gio-hang':
+                    // Nếu giỏ hàng không rỗng, thì hiển thị trang giỏ hàng
+                    if (!empty($_SESSION['cart'])) {
+                        // Đăng nhập mới vào đặt hàng được
+                        // if (!isset($_SESSION["user"])) {
+                        //     header("location:".BASE_CLIENT."?dang-nhap");
+                        // }
+                
+                        $cart = $_SESSION['cart'];
+                        include('./views/cart.php');
+                    } else {
+                        // Nếu giỏ hàng rỗng, có thể chuyển hướng hoặc hiển thị thông báo
+                        echo "Bạn không có sản phẩm nào!";
+                    }
+                    break;
+                
 
                 case 'xoa-gio-hang':
                     if($_GET["id"]){
@@ -302,6 +310,8 @@
         case 'lich-su':
             $userId = $_SESSION['user']['kh_id'];
 
+            
+
             if (!isset($userId)) {
                 header('Location: index.php?dang-nhap');
                 exit();
@@ -310,6 +320,9 @@
             // Lấy danh sách đơn hàng của người dùng
             $userOrders = orderAll();
 
+            usort($userOrders, function ($a, $b) {
+                return strtotime($b['order_date']) - strtotime($a['order_date']);
+            });
             // Kiểm tra kh_id của đơn hàng và hiển thị sản phẩm tương ứng
             $matchedOrders = array();
             foreach ($userOrders as $order) {
@@ -318,7 +331,52 @@
                 }
             }
 
-            // Hiển thị trang lịch sử đơn hàng với các đơn hàng tương ứng
+
+
+            $orders1 = [];
+            $orders2 = [];
+            $orders3 = [];
+            $orders4 = [];
+            $orders5 = [];
+            $orders6 = [];
+
+            
+            // chờ xác nhận
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '1') {
+                    $orders1[] = $order;
+                }
+            }
+            // đã xác nhận
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '2') {
+                    $orders2[] = $order;
+                }
+            }
+            // đang giao
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '3') {
+                    $orders3[] = $order;
+                }
+            }
+            // hoàn thành
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '4') {
+                    $orders4[] = $order;
+                }
+            }
+            // Lọc danh sách đơn hàng có trạng thái chờ huỷ
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '5') {
+                    $orders5[] = $order;
+                }
+            }
+            // đã hủy
+            foreach ($matchedOrders as $order) {
+                if ($order['order_status'] == '6') {
+                    $orders6[] = $order;
+                }
+            }
             include('./views/history.php');
             break;
             case 'ordering':
