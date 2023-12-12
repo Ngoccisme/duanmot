@@ -1,48 +1,4 @@
 <?php
-// function loadall_thongke_sanham_dm()
-// {
-//     // Viết câu lệnh để lấy thông tin thống kê sản phẩm theo từng danh mục
-
-//     $sql = "SELECT dm.id, dm.name, COUNT(*) as soluong, MIN(sp.price) as min, MAX(sp.price) as max
-//             FROM danhmuc dm  
-//             JOIN sanpham sp ON dm.id = sp.iddm
-//             GROUP BY dm.id, dm.name
-//             ORDER BY soluong ASC";
-    
-//     return pdo_query($sql);
-// }
-
-
-// thông kê các sản phẩm được mua nhiều nhất
-function loadall_thongke_sanham_dm_gg()
-{
-    $sql = "SELECT c.dm_name, COUNT(*) as soluong
-            FROM category c  
-            JOIN product sp ON c.dm_id = sp.dm_id
-            GROUP BY c.dm_id, c.dm_name
-            ORDER BY soluong ASC";
-    
-    return pdo_query($sql);
-}
-// thông kê các sản phẩm có nhiều nhất trong bill
-
-
-// thông kê các sản phẩm được mua nhiều nhất
- function load_top10_sanpham_banchay(){
-$sql=  " SELECT sp_id,sp_img,sq_name, COUNT(kh_id) AS sp_quantity FROM orderdetail GROUP BY hd_id, sp_img, sp_name ORDER BY sp_quantity DESC LIMIT 10";
-return pdo_query($sql);
-}
- function load_sptonkho(){
-    $sql = "SELECT p.sp_id,p.sp_name,p.sp_img ,p.sp_price FROM product p WHERE NOT EXISTS ( SELECT 1 FROM orderdetail o WHERE o.hd_id = p.sp_id)";
-    return pdo_query($sql);
-}
-// function load_doanhthu(){
-//     $sql = "SELECT order_date, SUM(total) AS doanhthu
-//     FROM order
-//     GROUP BY order_date;
-//     ";
-//     return pdo_query($sql);
-// }
 function load_doanhthu(){
     $conn = connect();
     $stmt = $conn->prepare("SELECT order_date, SUM(hd_id) AS doanhso

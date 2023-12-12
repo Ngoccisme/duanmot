@@ -25,7 +25,7 @@
 <div class="container" style="height: 550px ;">
     <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 </div>
-<button><a href="index.php?url=bieudo" style="color: inherit; text-decoration: none;">Xem Bảng Thống kê</a></button>
+<button><a href="index.php?url=bieudo" style="color: inherit; text-decoration: none;">Biểu đồ thống kê sản phẩm theo danh mục</a></button>
 <button><a href="index.php?url=bieudo3" style="color: inherit; text-decoration: none;">Biểu đồ thống kê doanh thu</a></button>
 <button><a href="index.php?url=bieudo2" style="color: inherit; text-decoration: none;">Biểu đồ sản phẩm bán chạy</a></button>
 <button><a href="index.php?url=thong-kee" style="color: inherit; text-decoration: none;">Biểu đồ Thống kê Số lượng và Doanh thu theo Sản phẩm</a></button>

@@ -389,7 +389,7 @@ ob_start();
         }
     }else if(isset($_SESSION["user"])){
         // Trang chính
-        $chart = cateChart();
+        // $chart = cateChart();
         include('./views/main.php');
     }else{
         header("location:".BASE_CLIENT."?dang-nhap");

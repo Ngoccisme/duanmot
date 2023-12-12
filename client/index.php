@@ -11,7 +11,7 @@
     include('./../helper/dd.php');
 
     if(isset($_GET['dang-ky'])){
-        include('./views/login.php');
+        include('./views/register.php');
         die;
     }else if (isset($_GET['dang-nhap'])){
         include('./views/login.php');
@@ -258,7 +258,7 @@
              } catch (\Throwable $th) {
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
              };
-            header("location:".BASE_CLIENT."");
+            header("location:".BASE_CLIENT."?url=ordering");
            }
            break;
 
@@ -321,6 +321,9 @@
             // Hiển thị trang lịch sử đơn hàng với các đơn hàng tương ứng
             include('./views/history.php');
             break;
+            case 'ordering':
+                include('./views/odering.php');
+                break;
         default:
             # code...
             break;

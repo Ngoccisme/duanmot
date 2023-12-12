@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/register.css">
     <title>Document</title>
 </head>
-<style>
-    
-</style>
 <body>
 <div class="container" id="container">
-        <!-- <div class="form-container sign-up">
+        <div class="form-container">
 
 
 
@@ -34,7 +31,7 @@
                 <input type="sdt" name="kh_phone" placeholder="Số Điện Thoại">
                 <button>ĐĂNG KÍ</button>
             </form>
-        </div> -->
+        </div>
 
 
 
@@ -48,7 +45,7 @@
 
 
 
-        <div class="form-container">
+        <!-- <div class="form-container sign-in">
             <form action="index.php?url=dang-nhap-save" method="POST" enctype="multipart/form-data">
                 <h1>ĐĂNG NHẬP</h1>
                 <div class="social-icons">
@@ -63,7 +60,7 @@
                 <a href="#">Quên Mật Khẩu?</a>
                 <button>ĐĂNG NHẬP</button>
             </form>
-        </div>
+        </div> -->
 
 
 
@@ -78,12 +75,12 @@
                 <div class="toggle-panel toggle-left">
                     <h1>Chào mừng trở lại !</h1>
                     <p>Nhập thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
-                    <button class="hidden" id="login">ĐĂNG NHẬP</button>
+                    <button class="hidden" id="login"><a href="?dang-nhap">ĐĂNG NHẬP</a></button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Chào bạn !</h1>
                     <p>Đăng kí với thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
-                    <button class="hidden" id="register"><a href="?dang-ky">ĐĂNG KÍ</a></button>
+                    <button class="hidden" id="register">ĐĂNG KÍ</button>
                 </div>
             </div>
         </div> -->
